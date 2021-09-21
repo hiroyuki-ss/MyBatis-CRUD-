@@ -13,37 +13,42 @@
 </head>
 <body class="bg-liglt">
 <form id="signup-form" method="post" action="/user/signup"
-	class="form-signup">
+	class="form-signup" th:object="${signupForm}">      
 	<h1 class="text-center" th:text="#{user.signup.title}"></h1>
+	<!-- th:fieldを使用すると、javaクラスと画面入力内容をバインド出来る -->
+	<!-- th:objectが書かれたタグ内であれば、Modelに登録されたキー名を省略できる -->
+
 	<!-- ユーザーID -->
 	<div class="form-group">
 		<label for="userID" th:text="#{userId}"></label>
-		<input type="text" class="form-control"/>
+		<input type="text" class="form-control" th:field="*{userId}"/>
 	</div>
 	<!-- パスワード -->
 	<div class="form-group">
 		<label for="password" th:text="#{password}"></label>
-		<input type="text" class="form-control"/>
+		<input type="text" class="form-control" th:field="*{password}"/>
 	</div>
 	<!-- ユーザー名 -->
 	<div class="form-group">
 		<label for="userName" th:text="#{userName}"></label>
-		<input type="text" class="form-control"/>
+		<input type="text" class="form-control" th:field="*{userName}"/>
 	</div>
 	<!-- 誕生日 -->
 	<div class="form-group">
 		<label for="birthday" th:text="#{birthday}"></label>
-		<input type="text" class="form-control"/>
+		<input type="text" class="form-control" placeholder="yyyy/MM/dd"
+			th:field="*{birthday}"/>
 	</div>
 	<!-- 年齢 -->
 	<div class="form-group">
 		<label for="age" th:text="#{age}"></label>
-		<input type="text" class="form-control"/>
+		<input type="text" class="form-control" th:field="*{age}"/>
 	</div>
 	<!-- 性別 -->
 	<div class="form-group">
 		<div th:each="item : ${genderMap}" class="form-check-inline">
-		<input type="radio" class="form-check-input" th:value="${item.value}"/>
+		<input type="radio" class="form-check-input" th:value="${item.value}"
+			th:field="*{gender}"/>
 		<label class="form-check-label" th:text="${item.key}"></label>
 	 </div>
 	</div>
