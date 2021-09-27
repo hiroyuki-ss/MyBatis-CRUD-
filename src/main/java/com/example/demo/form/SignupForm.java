@@ -25,7 +25,12 @@ public class SignupForm {
 	
 	@NotBlank(groups = ValidGroup1.class)
 	@Length(min = 4, max = 100, groups = ValidGroup2.class)
-	@Pattern(regexp = "/^[0-9a-zA-Z]*$/", groups = ValidGroup2.class)
+	
+	/* "[\\w]*" 英数字かアンダーバーを表す（a-z,A-Z,0-9) 
+	 * 脆弱生につながる可能生があり、
+	 * 文字列の先頭にマッチする（\A)と文字列の末尾でマッチする（\z,\Z)を使用ほうがよい
+	 */
+	@Pattern(regexp = "\\w*", groups = ValidGroup3.class)
 	private String password;
 	
 	@NotBlank(groups = ValidGroup1.class)
