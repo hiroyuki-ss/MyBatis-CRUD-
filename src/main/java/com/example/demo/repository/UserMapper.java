@@ -3,6 +3,7 @@ package com.example.demo.repository;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.example.demo.domain.user.model.MUser;
 
@@ -19,5 +20,15 @@ public interface UserMapper {
 	
 	//*ユーザー取得（１件）
 	public MUser findOne(String userId);
+	
+	//*複数のパラメーターを使用する場合、メソッドの引数に@Paramアノテーションを付ける
+	//*このアノテーションの値にはパラメーター名を指定する
+	//*ユーザー更新（１件）
+	public void updateOne(@Param("userId") String userId,
+			@Param("password") String password,
+			@Param("userName") String userName);
+	
+	//*ユーザー削除（１件）
+	public int deleteOne(@Param("userId") String userId);
 	
 }
