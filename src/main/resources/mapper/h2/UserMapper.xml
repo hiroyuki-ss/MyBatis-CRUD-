@@ -5,6 +5,18 @@
  <!-- Mapperとxmlのマッピング -->
  <mapper namespace="com.example.demo.repository.UserMapper">
  
+ 	<!-- マッピング定義（ユーザー） -->
+ 	<resultMap type="com.example.demo.domain.user.model.Muser" id="user">
+ 		<id column="user_id" property="userId" />
+ 		<result column="password" property="password" />
+ 		<result column="user_name" property="userName" />
+ 		<result column="birthday" property="birthday" />
+ 		<result column="ade" property="age" />
+ 		<result column="gender" property="gender" />
+ 		<result column="department_id" property="departmentId" />
+ 		<result column="role" property="role" />
+ 	</resultMap>
+ 
 	<!-- ユーザー1件登録 -->
  	<insert id="insertOne">
  		insert into m_user (
@@ -33,5 +45,21 @@
  		from
  			m_user
  	</select>
+ 	
+ 	<!-- ユーザー１件検索 -->
+ 	<select id="findOne" resultMap="user">
+ 		select
+ 			*
+ 		from
+ 			m_user
+ 		where
+ 			user_id = #{userId}
+ 	</select>
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
  </mapper>
  
