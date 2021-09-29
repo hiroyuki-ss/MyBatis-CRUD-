@@ -6,12 +6,12 @@
  <mapper namespace="com.example.demo.repository.UserMapper">
  
  	<!-- マッピング定義（ユーザー） -->
- 	<resultMap type="com.example.demo.domain.user.model.Muser" id="user">
+ 	<resultMap type="com.example.demo.domain.user.model.MUser" id="user">
  		<id column="user_id" property="userId" />
  		<result column="password" property="password" />
  		<result column="user_name" property="userName" />
  		<result column="birthday" property="birthday" />
- 		<result column="ade" property="age" />
+ 		<result column="age" property="age" />
  		<result column="gender" property="gender" />
  		<result column="department_id" property="departmentId" />
  		<result column="role" property="role" />
@@ -47,6 +47,7 @@
  	</select>
  	
  	<!-- ユーザー１件検索 -->
+ 	<!-- resultMapタグ、select結果とJavaクラスをマッピングさせるタグ　複雑なselect文を実行する場合に使用-->
  	<select id="findOne" resultMap="user">
  		select
  			*
@@ -55,11 +56,5 @@
  		where
  			user_id = #{userId}
  	</select>
- 	
- 	
- 	
- 	
- 	
- 	
  </mapper>
  
