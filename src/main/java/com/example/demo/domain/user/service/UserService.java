@@ -15,4 +15,11 @@ public interface UserService {
 	//*ユーザー取得（１件）
 	public MUser getUserOne(String userId);
 	
+	//*ユーザー更新（１件）
+	public void updateUserOne(String userId,
+		String password, String	userName);
+	
+	//*ユーザー削除（１件）
+	public void deleteUserOne(String userId);
+		
 }
