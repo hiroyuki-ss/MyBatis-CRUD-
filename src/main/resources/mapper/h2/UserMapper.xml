@@ -6,6 +6,8 @@
  <mapper namespace="com.example.demo.repository.UserMapper">
  
  	<!-- マッピング定義（ユーザー） -->
+ 	<!-- associationタグを使用すると、マッピング定義内にに別のマッピング定義を入れることが出来る -->
+ 	<!-- テーブル結合の際に使用、ただ結合先のデータが1件の場合に使う -->
  	<resultMap type="com.example.demo.domain.user.model.MUser" id="user">
  		<id column="user_id" property="userId" />
  		<result column="password" property="password" />
@@ -15,8 +17,15 @@
  		<result column="gender" property="gender" />
  		<result column="department_id" property="departmentId" />
  		<result column="role" property="role" />
+ 		<association property="department" resultMap="department" />
  	</resultMap>
- 
+ 	
+ 	<!-- マッピング定義（部署） -->
+ 	<resultMap type="com.example.demo.domain.user.model.Department" id="department">
+ 		<id column="department_id" property="departmentId"/>
+ 		<result column="department_name" property="departmentName"/>
+ 	</resultMap>
+ 	
 	<!-- ユーザー1件登録 -->
  	<insert id="insertOne">
  		insert into m_user (
@@ -57,12 +66,14 @@
  	</select>
  	
  	<!-- ユーザー１件検索 -->
- 	<!-- resultMapタグ、select結果とJavaクラスをマッピングさせるタグ　複雑なselect文を実行する場合に使用-->
+ 	<!-- resultMapタグ、select結果とJavaクラスをマッピングさせるタグ　複雑なselect文を実行する場合に使用 -->
  	<select id="findOne" resultMap="user">
  		select
  			*
  		from
  			m_user
+ 			left join m_department
+ 				on m_user.department_id = m_department.department_id
  		where
  			user_id = #{userId}
  	</select>
