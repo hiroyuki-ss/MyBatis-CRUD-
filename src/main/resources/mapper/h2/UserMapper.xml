@@ -39,6 +39,8 @@
  			#{role})
  	</insert>
  	<!--ユーザー複数件取得-->
+ 	<!-- 動的SQL生成にifタグを使う　if文と同じ使い方、test属性に条件式を書き、結果がtrueであればタグ内のSQLが追加される、falseであればSQLは追加 -->
+	<!-- whereタグ内のifタグが1つでもtrueとなれば、where句を追加する --> 
  	<select id="findMany" resultType="MUser">
  		select
  			*
