@@ -16,7 +16,7 @@ public interface UserMapper {
 	
 	//*ユーザー取得
 	//*select文の実行結果が複数件になる場合、メソッドの戻り値をListにする
-	public List<MUser> findMany();
+	public List<MUser> findMany(MUser user);
 	
 	//*ユーザー取得（１件）
 	public MUser findOne(String userId);
